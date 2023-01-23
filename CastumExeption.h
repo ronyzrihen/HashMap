@@ -5,8 +5,10 @@
 #include <iostream>
 #include <string>
 
-class CustumExeption{
+using namespace std;
+class CustumExeption: exception{
 
-
+string invalid_index();
+string invalid_key();
 
 };

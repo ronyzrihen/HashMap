@@ -8,7 +8,7 @@
 #include "Pair.h"
 using namespace std;
 template<class K, class V>
-class HashMap{
+class HashMap: OverFlowSizeCheck{
 
 public: // constructor distructors
 HashMap(int size);
