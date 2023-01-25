@@ -1,30 +1,34 @@
-//
-// Created by Rony Zrihen on 23/01/2023.
-//
 #pragma once
-#include <iostream>
 #include <string>
+#include<iostream>
+#include<stdlib.h>
 using namespace std;
+
 template<class T1, class T2>
-class Pair{
-
+class Pair
+{
 public:
-
-    //getters
-    T1& get_first(){return m_first;};
-    T2& get_second(){return m_second;};
-
-    //operators
-    Pair& operator=(const Pair& source);
-    ostream& print(ostream& out);
-
+	Pair(T1,T2);
+	~Pair();
+public:
+	T1& get_first();
+	T2& get_second();
+	Pair& operator =(Pair& source);
+	void print();
+	void put();
 private:
-    T1 m_first;
-    T2 m_second;
-
+	T1 m_first;
+	T2 m_second;
 };
 
-template <class T1, class T2>
-ostream& operator <<(ostream& out, Pair<T1,T2> &source);
-template <class T1, class T2>
-istream& operator >> (istream& in, Pair<T1,T2> &source);
+
+template<class T1, class T2>
+ostream& operator<< (ostream&out, const Pair<T1, T2>& source) {
+	 source.print();
+	 return out;
+}
+template<class T1, class T2>
+istream& operator>> (istream& in, Pair<T1, T2>& source) {
+	 source.put();
+	 return in;
+}
