@@ -2,19 +2,19 @@
 #include <string>
 #include<iostream>
 #include<stdlib.h>
-namespace string_err {
 
-class Custom
+using namespace std;
+class Custom : public exception
 {
 public:
-	Custom();
-	~Custom();
+	Custom(){};
+	~Custom(){};
 public:
-	std::string invalid_index();
-	std::string invalid_key();
+	string invalid_index() { return "Invalid index"; };
+	string invalid_key() { return "Invalid key"; };
 private:
 
-};
+
 }
 
-
+;
