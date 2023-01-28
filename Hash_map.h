@@ -15,43 +15,56 @@ class Hash_map :public Overflow
 public:
 	Hash_map(int size) :
 		Overflow(size),
-		items(vector<Pair<k, v>>(size))
-	{}
-
-	//~Hash_map();
+		items(vector<Pair<k, v>>(0))
+	{
+		
+	};
+	~Hash_map(){};
 
 public:
 	
 	void put(k& key, v& value)
 	{
 		if (contains(key) == true)
-			throw Custom();
+			throw Custom().invalid_key();
 
-		if (getsize() == items.max_size())
+		if (getsize() <= items.size())
 			setsize(5);
 
-		Pair<k,v> new_p();
+		Pair<k,v>* new_p=new Pair<k,v>(key,static_cast<v>(value));
+		
 		
 	
-		items.push_back(new_p);
-
-
+		items.push_back(*new_p);
+		
+		
 	}
 	template<class k>
 	bool contains(k& key) {
-		for (int i = 0; i < getsize(); i++)
+		for (int i = 0; i < items.size(); i++)
 		{
 			if (items[i].get_first() == key)/////////////////
 				return true;
 		}
 		return false;
 	}
-	//v operator[](k& key);
+	 v operator[](k& key) {
+		
+			
+		for (int i = 0; i < items.size(); i++) {
+			if (items[i].get_first() == key) {
+				cout << "the Value in location " << key << " is: ";
+				return items[i].get_second();
+			}
+		}
+		throw Custom().invalid_key();
+
+	};
 	
 	void print(ostream& out) {
-		for (int i = 0; i < getsize(); i++)
+		for (int i = 0; i < items.size(); i++)
 		{
-			out << items[i].get_first() << " " << items[i].get_second();
+			out << items[i].get_first() << " " << items[i].get_second()<<endl;
 		}
 	};
 	
@@ -61,7 +74,10 @@ private:
 };
 
 template<class k, class v>
-ostream& operator<<(ostream& out, const Hash_map<k,v>&source);
+ostream& operator<<(ostream& out, Hash_map<k, v>& source) {
+	source.print(out);
+	return out;
+}
 
 
 

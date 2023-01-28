@@ -10,8 +10,8 @@ public:
 	Custom(){};
 	~Custom(){};
 public:
-	string invalid_index() { return "Invalid index"; };
-	string invalid_key() { return "Invalid key"; };
+	string invalid_index() { return "Invalid index\n"; };
+	string invalid_key() { return "Invalid key\n"; };
 private:
 
 
